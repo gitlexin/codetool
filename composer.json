@@ -8,11 +8,9 @@
             "email": "772821140@qq.com"
         }
     ],
-    "minimum-stability": "dev",
     "license": "MIT",
     "require": {
         "php": ">=5.4.0",
-        "ext-curl": "*"
     },
     "autoload": {
         "psr-4": { "Lexin\\": "src/" }
