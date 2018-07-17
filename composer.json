@@ -14,7 +14,12 @@
         "php": ">=5.4.0"
     },
     "autoload": {
-        "psr-4": { "Lexin\\": "src/" }
+        "psr-4": { 
+            "Lexin\\": "src/"
+        },
+        "files": [
+            "src/functions.php"
+        ]
     }
 }
 
