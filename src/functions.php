@@ -16,3 +16,12 @@ if (!function_exists('p')) {
         call_user_func_array('\Lexin\Func\Debug::p', func_get_args());
 	}
 }
+
+/**
+ * 实时输出字符串
+ */
+if (!function_exists('show_trace_info')) {
+    function show_trace_info($msg) {
+        call_user_func('\Lexin\Func\Debug::show_trace_info', $msg);
+    }
+}

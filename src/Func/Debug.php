@@ -39,7 +39,7 @@ class Debug
         return $print_str;
     }
 
-    public static function output(String $content) {
+    public static function output($content) {
         ob_end_clean();
         echo "<meta charset='UTF-8'><pre class='xdebug-var-dump' dir='ltr'>",PHP_EOL;
         echo $content;
@@ -61,5 +61,34 @@ class Debug
             $out .= print_r(self::buildStr($v), true) . PHP_EOL;
         }
         self::output($out);
+    }
+
+    /**
+     * 实时输出文本内容
+     * @param string $msg
+     */
+    public static function show_trace_info($msg='')
+    {
+        ob_start();
+        echo date('m-d H:i:s'),',memory:'.self::memory_usage_convert(memory_get_usage(true)), ' ';
+        if (is_string($msg)) {
+            echo $msg;
+        } else {
+            print_r($msg);
+        }
+        echo PHP_SAPI == 'cli' ? PHP_EOL : '<br/>';
+        ob_end_flush();
+        flush();
+    }
+
+    /**
+     * 将字节大小转换为可读性强的带单位的显示方式
+     * @param $size
+     * @return string
+     */
+    public static function memory_usage_convert($size)
+    {
+        $unit=array('b','kb','mb','gb','tb','pb');
+        return @round($size/pow(1024,($i=floor(log($size,1024)))),2).''.$unit[$i];
     }
 }
