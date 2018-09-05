@@ -29,7 +29,7 @@ class Arr
     }
 
     //将一维数组按照指定的字段分组
-    public static function group_by(Array $array, String $fieldName) {
+    public static function group_by(Array $array, $fieldName) {
         if (is_array($array) && $fieldName) {
             $tmp = [];
             foreach($array as $v) {
