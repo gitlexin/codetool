@@ -29,12 +29,16 @@ class Arr
     }
 
     //将一维数组按照指定的字段分组
-    public static function group_by(Array $array, $fieldName) {
+    public static function group_by(Array $array, $fieldName, $is_multi = false) {
         if (is_array($array) && $fieldName) {
             $tmp = [];
             foreach($array as $v) {
                 if (isset($v[$fieldName]) && $v[$fieldName]) {
-                    $tmp[$v[$fieldName]][] = $v;
+                    if ($is_multi) {
+                        $tmp[$v[$fieldName]][] = $v;
+                    } else {
+                        $tmp[$v[$fieldName]] = $v;
+                    }
                 }
             }
 
