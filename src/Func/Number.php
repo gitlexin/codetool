@@ -1,4 +1,5 @@
 <?php
+
 namespace Lexin\Func;
 
 class Number
@@ -9,7 +10,8 @@ class Number
      * @param int $size
      * @return float|int
      */
-    public static function float_floor($num, $size = 2) {
+    public static function float_floor($num, $size = 2)
+    {
         $str = strval($num);
         list($int, $float) = explode('.', $str);
         $float = substr($float, 0, $size);
@@ -22,10 +24,11 @@ class Number
      * @param bool $float 是否保留小数
      * @return string
      */
-    public static function filter_num($str, $float = false){
+    public static function filter_num($str, $float = false)
+    {
         $preg = $float ? '[0-9\.]*' : '\d*';
         $num = preg_match_all("/{$preg}/", $str, $out);
-        if($num){
+        if ($num) {
             return join(array_values($out[0]));
         }
         return '';

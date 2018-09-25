@@ -1,4 +1,5 @@
 <?php
+
 namespace Lexin\Func;
 
 class String
@@ -10,7 +11,8 @@ class String
      * @param string $subfix
      * @return string
      */
-    function cutstr($str, $len = 5, $subfix = '...'){
+    function cutstr($str, $len = 5, $subfix = '...')
+    {
         return mb_substr($str, 0, $len) . (mb_strlen($str) > $len ? $subfix : '');
     }
 }

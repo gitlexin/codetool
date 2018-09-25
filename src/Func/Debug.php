@@ -1,4 +1,5 @@
 <?php
+
 namespace Lexin\Func;
 
 class Debug
@@ -6,7 +7,8 @@ class Debug
     /**
      * 打印传入的所有参数，并结束程序
      */
-    public static function buildStr($value) {
+    public static function buildStr($value)
+    {
         $type = gettype($value);
         $print_str = '';
         switch ($type) {
@@ -30,7 +32,7 @@ class Debug
             case 'object':
                 $print_str .= print_r($value, true);
                 break;
-            
+
             default:
                 $print_str .= '参数type异常';
                 break;
@@ -39,29 +41,32 @@ class Debug
         return $print_str;
     }
 
-    public static function output($content) {
+    public static function output($content)
+    {
         ob_end_clean();
         if (PHP_SAPI == 'cli') {
             echo $content;
         } else {
-            echo "<meta charset='UTF-8'><pre class='xdebug-var-dump' dir='ltr'>",PHP_EOL;
+            echo "<meta charset='UTF-8'><pre class='xdebug-var-dump' dir='ltr'>", PHP_EOL;
             echo $content;
             echo '</pre>';
         }
     }
 
-    public static function pe() {
+    public static function pe()
+    {
         $out = '';
-        foreach(func_get_args() as $v) {
+        foreach (func_get_args() as $v) {
             $out .= print_r(self::buildStr($v), true) . PHP_EOL;
         }
         self::output($out);
         die;
     }
 
-    public static function p() {
+    public static function p()
+    {
         $out = '';
-        foreach(func_get_args() as $v) {
+        foreach (func_get_args() as $v) {
             $out .= print_r(self::buildStr($v), true) . PHP_EOL;
         }
         self::output($out);
@@ -71,10 +76,10 @@ class Debug
      * 实时输出文本内容
      * @param string $msg
      */
-    public static function show_trace_info($msg='')
+    public static function show_trace_info($msg = '')
     {
         ob_start();
-        echo date('m-d H:i:s'),',memory:'.self::memory_usage_convert(memory_get_usage(true)), ' ';
+        echo date('m-d H:i:s'), ',memory:' . self::memory_usage_convert(memory_get_usage(true)), ' ';
         if (is_string($msg)) {
             echo $msg;
         } else {
@@ -92,7 +97,7 @@ class Debug
      */
     public static function memory_usage_convert($size)
     {
-        $unit=array('b','kb','mb','gb','tb','pb');
-        return @round($size/pow(1024,($i=floor(log($size,1024)))),2).''.$unit[$i];
+        $unit = array('b', 'kb', 'mb', 'gb', 'tb', 'pb');
+        return @round($size / pow(1024, ($i = floor(log($size, 1024)))), 2) . '' . $unit[$i];
     }
 }
