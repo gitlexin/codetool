@@ -116,17 +116,17 @@ class Request
 
         $useragent = strtolower($_SERVER['HTTP_USER_AGENT']);
 
-        if (dstrpos($useragent, $pad_list)) {
+        if (strpos($useragent, $pad_list)) {
             return false;
         }
-        if (($v = dstrpos($useragent, $touchbrowser_list, true))) {
+        if (($v = strpos($useragent, $touchbrowser_list, true))) {
             return '2';
         }
-        if (($v = dstrpos($useragent, $wmlbrowser_list))) {
+        if (($v = strpos($useragent, $wmlbrowser_list))) {
             return '3'; //wml版
         }
         $brower = array('mozilla', 'chrome', 'safari', 'opera', 'm3gate', 'winwap', 'openwave', 'myop');
-        if (dstrpos($useragent, $brower)) {
+        if (strpos($useragent, $brower)) {
             return false;
         }
 
