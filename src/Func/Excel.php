@@ -5,11 +5,14 @@ namespace Lexin\Func;
 class Excel
 {
     /**
-     * 将Excel内容完整的读取成数组
-     * @param  string $filePath excel路径
+     * 读取excel文件内的完整内容，加载为数据返回
+     * @param $filePath
+     * @param int $sheetNum
      * @return array
+     * @throws \PHPExcel_Exception
+     * @throws \PHPExcel_Reader_Exception
      */
-    public static function read_excel($filePath)
+    public static function read_excel($filePath, $sheetNum = 0)
     {
         if (!is_file($filePath)) {
             return [];
@@ -22,7 +25,7 @@ class Excel
 
         $PHPExcel = $PHPReader->load($filePath);
         /**读取excel文件中的第一个工作表*/
-        $currentSheet = $PHPExcel->getSheet(0);
+        $currentSheet = $PHPExcel->getSheet($sheetNum);
         /**取得最大的列号*/
         $allColumn = $currentSheet->getHighestColumn();
         /**取得一共有多少行*/
