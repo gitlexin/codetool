@@ -43,10 +43,10 @@ class Debug
 
     public static function output($content)
     {
-        ob_end_clean();
         if (PHP_SAPI == 'cli') {
             echo $content;
         } else {
+            ob_end_clean();
             echo "<meta charset='UTF-8'><pre class='xdebug-var-dump' dir='ltr'>", PHP_EOL;
             echo $content;
             echo '</pre>';
